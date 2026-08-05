@@ -1,23 +1,33 @@
-function ProductCard(props) {
-  console.log(props);
+import React, { useState } from "react";
+
+function ProductCard({ title, price, imageURL, sizes }) {
+  const [productCount, setProductCount] = useState(0);
+
+  const onClickAdd = () => {
+    setProductCount(productCount + 1);
+  };
+
   return (
-    <div className="pizza-block">
+    <div className="product-card">
       <img
-        className="pizza-block__image"
-        src={props.imageURL}
+        className="product-card__image"
+        src={imageURL}
         alt="Товар для художественной гимнастики"
       />
-      <h4 className="pizza-block__title">{props.title}</h4>
-      <div className="pizza-block__selector">
+      <h4 className="product-card__title">{title}</h4>
+      <div className="product-card__selector">
         <ul>
-          {props.sizes.map((size) => (
+          {sizes.map((size) => (
             <li key={size}>{size}</li>
           ))}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{props.price} руб.</div>
-        <div className="button button--outline button--add">
+      <div className="product-card__bottom">
+        <div className="product-card__price">{price} руб.</div>
+        <div
+          onClick={onClickAdd}
+          className="button button--outline button--add"
+        >
           <svg
             width="12"
             height="12"
@@ -31,7 +41,7 @@ function ProductCard(props) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          <i>{productCount}</i>
         </div>
       </div>
     </div>

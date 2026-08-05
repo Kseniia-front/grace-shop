@@ -3,10 +3,10 @@ function Categories() {
     <div className="categories">
       <ul>
         <li className="active">Все</li>
-        <li>Обручи</li>
-        <li>Мячи</li>
-        <li>Булавы</li>
-        <li>Ленты</li>
+        <li>Инвентарь</li>
+        <li>Одежда</li>
+        <li>Чешки</li>
+        <li>Аксессуары</li>
       </ul>
     </div>
   );
