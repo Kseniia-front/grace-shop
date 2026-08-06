@@ -1,0 +1,74 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "./img/products/hoop.png",
+    "title": "Обруч",
+    "sizes": ["70 см.", "75 см.", "80 см.", "85 см."],
+    "price": 1500,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "./img/products/ball.png",
+    "title": "Мяч",
+    "sizes": ["36 см.", "41 см.", "45 см."],
+    "price": 2800,
+    "category": 0,
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "imageUrl": "./img/products/clubs.png",
+    "title": "Булавы",
+    "sizes": ["36 см.", "41 см.", "45 см."],
+    "price": 3200,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "./img/products/ribbon.png",
+    "title": "Лента",
+    "sizes": ["4 м", "5 м", "6 м"],
+    "price": 1900,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "imageUrl": "./img/products/leotard.png",
+    "title": "Купальник",
+    "sizes": ["XS", "S", "M"],
+    "price": 2500,
+    "category": 1,
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "imageUrl": "./img/products/gaiters.png",
+    "title": "Гетры",
+    "sizes": ["S", "M", "L"],
+    "price": 900,
+    "category": 1,
+    "rating": 3
+  },
+  {
+    "id": 6,
+    "imageUrl": "./img/products/shoes.png",
+    "title": "Полупальцы",
+    "sizes": ["S", "M", "L"],
+    "price": 1200,
+    "category": 2,
+    "rating": 3
+  },
+  {
+    "id": 7,
+    "imageUrl": "./img/products/bag.png",
+    "title": "Сумка",
+    "sizes": ["S", "M"],
+    "price": 3500,
+    "category": 3,
+    "rating": 2
+  }
+]

@@ -3,39 +3,20 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import ProductCard from "./components/ProductCard";
+import products from "./assets/img/products.json";
+import hoop from "./assets/img/products/hoop.png";
+import ball from "./assets/img/products/ball.png";
+import clubs from "./assets/img/products/clubs.png";
+import ribbon from "./assets/img/products/ribbon.png";
+import puinte from "./assets/img/products/puinte.png";
+import leotard from "./assets/img/products/leotard.png";
+import gaiters from "./assets/img/products/gaiters.png";
+import shoes from "./assets/img/products/shoes.png";
+import bag from "./assets/img/products/bag.png";
 
-const products = [
-  {
-    id: 1,
-    title: "Обруч",
-    price: 1500,
-    imageURL: "/img/hoop.png",
-    sizes: ["70 см", "75см", "80 см", "85 см"],
-  },
-  {
-    id: 2,
-    title: "Мяч",
-    price: 2800,
-    imageURL: "/img/ball.png",
-    sizes: ["36 см", "41 см", "45 см"],
-  },
-  {
-    id: 3,
-    title: "Булавы",
-    price: 3200,
-    imageURL: "/img/clubs.png",
-    sizes: ["36 см", "41 см", "45 см"],
-  },
-  {
-    id: 4,
-    title: "Лента",
-    price: 1900,
-    imageURL: "/img/ribbon.png",
-    sizes: ["4 м", "5 м", "6 м"],
-  },
-];
+const productImages = [hoop, ball, clubs, ribbon, leotard, gaiters, shoes, bag];
 
-const categories = ["Все", "Обручи", "Мячи", "Булавы", "Ленты"];
+const categories = ["Все", "Инвентарь", "Одежда", "Полупальцы", "Аксессуары"];
 
 function App() {
   return (
@@ -50,14 +31,8 @@ function App() {
 
           <h2 className="content__title">Все товары</h2>
           <div className="content__items">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                title={product.title}
-                price={product.price}
-                imageURL={product.imageURL}
-                sizes={product.sizes}
-              />
+            {products.map((obj, index) => (
+              <ProductCard key={obj.id} {...obj} image={productImages[index]} />
             ))}
           </div>
         </div>

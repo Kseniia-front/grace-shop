@@ -1,9 +1,11 @@
+import logo from "../assets/img/products/puinte.png";
+
 function Header() {
   return (
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <img src="/img/puinte.png" alt="Логотип" />
+          <img src={logo} alt="Логотип" />
           <div>
             <h1>GRACE SHOP</h1>
             <p>Товары для художественной гимнастики</p>

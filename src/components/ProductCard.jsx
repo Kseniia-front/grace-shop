@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 
-function ProductCard({ title, price, imageURL, sizes }) {
-  const [productCount, setProductCount] = useState(0);
-
-  const onClickAdd = () => {
-    setProductCount(productCount + 1);
-  };
+function ProductCard({ title, price, image, sizes }) {
+  const [activeSize, setActiveSize] = React.useState(0);
 
   return (
     <div className="product-card">
-      <img
-        className="product-card__image"
-        src={imageURL}
-        alt="Товар для художественной гимнастики"
-      />
+      <img className="product-card__image" src={image} alt={title} />
       <h4 className="product-card__title">{title}</h4>
       <div className="product-card__selector">
         <ul>
-          {sizes.map((size) => (
-            <li key={size}>{size}</li>
+          {sizes.map((size, i) => (
+            <li
+              onClick={() => setActiveSize(i)}
+              className={activeSize === i ? "active" : ""}
+            >
+              {size}
+            </li>
           ))}
         </ul>
       </div>
       <div className="product-card__bottom">
         <div className="product-card__price">{price} руб.</div>
-        <div
-          onClick={onClickAdd}
-          className="button button--outline button--add"
-        >
+        <div className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -41,7 +35,7 @@ function ProductCard({ title, price, imageURL, sizes }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>{productCount}</i>
+          <i>0</i>
         </div>
       </div>
     </div>
