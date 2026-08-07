@@ -11,6 +11,7 @@ function ProductCard({ title, price, image, sizes }) {
         <ul>
           {sizes.map((size, i) => (
             <li
+              key={size}
               onClick={() => setActiveSize(i)}
               className={activeSize === i ? "active" : ""}
             >
