@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function ProductCard({ title, price, image, sizes }) {
+function ProductCard({ title, price, imageUrl, sizes }) {
   const [activeSize, setActiveSize] = React.useState(0);
 
   return (
     <div className="product-card">
-      <img className="product-card__image" src={image} alt={title} />
+      <img className="product-card__image" src={imageUrl} alt={title} />
       <h4 className="product-card__title">{title}</h4>
       <div className="product-card__selector">
         <ul>
