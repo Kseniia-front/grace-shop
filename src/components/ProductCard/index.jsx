@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ProductCard({ title, price, imageUrl, sizes }) {
   const [activeSize, setActiveSize] = React.useState(0);

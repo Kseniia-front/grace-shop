@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import logo from "../assets/img/products/puinte.png";
 
 function Header() {
@@ -12,7 +14,7 @@ function Header() {
           </div>
         </div>
         <div className="header__cart">
-          <a href="/cart.html" class="button button--cart">
+          <Link to="/cart.html" class="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>
             <svg
@@ -45,7 +47,7 @@ function Header() {
               />
             </svg>
             <span>3</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
