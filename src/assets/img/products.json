@@ -10,7 +10,7 @@
   },
   {
     "id": 1,
-    "imageUrl": "https://gymnasticslook.ru/image/cache/catalog/predmety/MyachPastorelli16smrozovyj-720x720.jpg",
+    "imageUrl": "/ball.png",
     "title": "Мяч",
     "sizes": ["36 см.", "41 см.", "45 см."],
     "price": 2800,
