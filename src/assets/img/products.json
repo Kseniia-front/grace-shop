@@ -5,7 +5,7 @@
     "title": "Обруч",
     "sizes": ["70 см.", "75 см.", "80 см.", "85 см."],
     "price": 1500,
-    "category": 0,
+    "category": 1,
     "rating": 4
   },
   {
@@ -14,7 +14,7 @@
     "title": "Мяч",
     "sizes": ["36 см.", "41 см.", "45 см."],
     "price": 2800,
-    "category": 0,
+    "category": 1,
     "rating": 5
   },
   {
@@ -23,7 +23,7 @@
     "title": "Булавы",
     "sizes": ["36 см.", "41 см.", "45 см."],
     "price": 3200,
-    "category": 0,
+    "category": 1,
     "rating": 4
   },
   {
@@ -32,7 +32,7 @@
     "title": "Лента",
     "sizes": ["4 м", "5 м", "6 м"],
     "price": 1900,
-    "category": 0,
+    "category": 1,
     "rating": 4
   },
   {
@@ -41,7 +41,7 @@
     "title": "Купальник",
     "sizes": ["XS", "S", "M"],
     "price": 2500,
-    "category": 1,
+    "category": 2,
     "rating": 5
   },
   {
@@ -50,7 +50,7 @@
     "title": "Гетры",
     "sizes": ["S", "M", "L"],
     "price": 900,
-    "category": 1,
+    "category": 2,
     "rating": 3
   },
   {
@@ -59,7 +59,7 @@
     "title": "Полупальцы",
     "sizes": ["S", "M", "L"],
     "price": 1200,
-    "category": 2,
+    "category": 3,
     "rating": 3
   },
   {
@@ -68,7 +68,7 @@
     "title": "Сумка",
     "sizes": ["S", "M"],
     "price": 3500,
-    "category": 3,
+    "category": 4,
     "rating": 2
   }
 ]
