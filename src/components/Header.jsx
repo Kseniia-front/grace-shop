@@ -1,20 +1,25 @@
 import { Link } from "react-router-dom";
 
+import Search from "./Search";
+
 import logo from "../assets/img/products/puinte.png";
 
-function Header() {
+function Header({ searchValue, setSearchValue }) {
   return (
     <div className="header">
       <div className="container">
-        <div className="header__logo">
-          <img src={logo} alt="Логотип" />
-          <div>
-            <h1>GRACE SHOP</h1>
-            <p>Товары для художественной гимнастики</p>
+        <Link to="/">
+          <div className="header__logo">
+            <img src={logo} alt="Логотип" />
+            <div>
+              <h1>GRACE SHOP</h1>
+              <p>Товары для художественной гимнастики</p>
+            </div>
           </div>
-        </div>
+        </Link>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
         <div className="header__cart">
-          <Link to="/cart.html" class="button button--cart">
+          <Link to="/cart.html" className="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>
             <svg
