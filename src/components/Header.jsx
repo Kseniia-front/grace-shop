@@ -4,7 +4,7 @@ import Search from "./Search";
 
 import logo from "../assets/img/products/puinte.png";
 
-function Header({ searchValue, setSearchValue }) {
+function Header() {
   return (
     <div className="header">
       <div className="container">
@@ -17,7 +17,7 @@ function Header({ searchValue, setSearchValue }) {
             </div>
           </div>
         </Link>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Search />
         <div className="header__cart">
           <Link to="/cart.html" className="button button--cart">
             <span>520 ₽</span>
