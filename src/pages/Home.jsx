@@ -1,17 +1,28 @@
 import React from "react";
 import axios from "axios";
+import qs from "qs";
+import { sortList } from "../components/Sort";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
+import {
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
+
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter,
   );
@@ -28,7 +39,7 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  React.useEffect(() => {
+  const fetchProducts = () => {
     setIsLoading(true);
 
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
@@ -44,8 +55,47 @@ const Home = () => {
         setItems(res.data);
         setIsLoading(false);
       });
+  };
 
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage]);
+
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = sortList.find(
+        (obj) => obj.sortProperty === params.sortProperty,
+      );
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        }),
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  React.useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchProducts();
+    }
+
+    isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   const products = items.map((obj) => <ProductCard key={obj.id} {...obj} />);
