@@ -1,7 +1,28 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-function ProductCard({ title, price, imageUrl, sizes }) {
+import { addItem } from "../../redux/slices/cartSlice";
+
+function ProductCard({ id, title, price, imageUrl, sizes }) {
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state) =>
+    state.cart.items.find((obj) => obj.id === id),
+  );
+
   const [activeSize, setActiveSize] = React.useState(0);
+
+  const addedCount = cartItem ? cartItem.count : 0;
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      size: sizes[activeSize],
+    };
+    dispatch(addItem(item));
+  };
 
   return (
     <div className="product-card-wrapper">
@@ -23,7 +44,10 @@ function ProductCard({ title, price, imageUrl, sizes }) {
         </div>
         <div className="product-card__bottom">
           <div className="product-card__price">{price} руб.</div>
-          <div className="button button--outline button--add">
+          <div
+            onClick={onClickAdd}
+            className="button button--outline button--add"
+          >
             <svg
               width="12"
               height="12"
@@ -37,7 +61,7 @@ function ProductCard({ title, price, imageUrl, sizes }) {
               />
             </svg>
             <span>Добавить</span>
-            <i>0</i>
+            {addedCount > 0 && <i>{addedCount}</i>}
           </div>
         </div>
       </div>
