@@ -1,8 +1,9 @@
 import React from "react";
-import axios from "axios";
+
 import qs from "qs";
 import { sortList } from "../components/Sort";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   setCategoryId,
@@ -15,7 +16,7 @@ import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
-import { useNavigate } from "react-router-dom";
+import { fetchProducts } from "../redux/slices/productSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,13 +24,12 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
+  const { items, status } = useSelector((state) => state.product);
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter,
   );
 
   const { searchValue } = React.useContext(SearchContext);
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -39,22 +39,23 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  const fetchProducts = () => {
-    setIsLoading(true);
-
+  const getProducts = async () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const sortBy = sort.sortProperty.replace("-", "");
     const category = categoryId > 0 ? `category=${categoryId}&` : "";
     const search = searchValue ? `&search=${searchValue}&` : "";
 
-    axios
-      .get(
-        `https://6a8568159c451dc67a639285.mockapi.io/products?page=${currentPage}&limit=4&${category}sortBy=${sortBy}&order=${order}${search}`,
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+    dispatch(
+      fetchProducts({
+        sortBy,
+        order,
+        category,
+        search,
+        currentPage,
+      }),
+    );
+
+    window.scrollTo(0, 0);
   };
 
   React.useEffect(() => {
@@ -89,10 +90,8 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-
     if (!isSearch.current) {
-      fetchProducts();
+      getProducts();
     }
 
     isSearch.current = false;
@@ -110,8 +109,20 @@ const Home = () => {
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все товары</h2>
-      <div className="content__items">{isLoading ? skeletons : products}</div>
+      <h2 className="content__title">Все пиццы</h2>
+      {status === "error" ? (
+        <div className="content__error-info">
+          <h2>Произошла ошибка 😕</h2>
+          <p>
+            К сожалению, не удалось загрузить данные. Попробуйте повторить
+            попытку позже.
+          </p>
+        </div>
+      ) : (
+        <div className="content__items">
+          {status === "loading" ? skeletons : products}
+        </div>
+      )}
 
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </>
