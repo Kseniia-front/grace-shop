@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
+  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
@@ -15,8 +16,7 @@ import Sort from "../components/Sort";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
-import { fetchProducts } from "../redux/slices/productSlice";
+import { fetchProducts, selectProductData } from "../redux/slices/productSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,12 +24,9 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { items, status } = useSelector((state) => state.product);
-  const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter,
-  );
-
-  const { searchValue } = React.useContext(SearchContext);
+  const { items, status } = useSelector(selectProductData);
+  const { categoryId, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
