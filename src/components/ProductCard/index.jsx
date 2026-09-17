@@ -11,7 +11,9 @@ function ProductCard({ id, title, price, imageUrl, sizes }) {
 
   const addedCount = cartItem ? cartItem.count : 0;
 
-  const onClickAdd = () => {
+  const onClickAdd = (event) => {
+    event.preventDefault();
+
     const item = {
       id,
       title,

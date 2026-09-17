@@ -3,7 +3,7 @@ import React from "react";
 import qs from "qs";
 import { sortList } from "../components/Sort";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   selectFilter,
@@ -16,6 +16,7 @@ import Sort from "../components/Sort";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
+import { SearchContext } from "../App";
 import { fetchProducts, selectProductData } from "../redux/slices/productSlice";
 
 const Home = () => {
@@ -94,7 +95,11 @@ const Home = () => {
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const products = items.map((obj) => <ProductCard key={obj.id} {...obj} />);
+  const products = items.map((obj) => (
+    <Link key={obj.id} to={`/product/${obj.id}`}>
+      <ProductCard {...obj} />
+    </Link>
+  ));
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
