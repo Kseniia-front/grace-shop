@@ -2,8 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-export const FullProduct = () => {
-  const [product, setProduct] = React.useState();
+export const FullProduct: React.FC = () => {
+  const [product, setProduct] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: string;
+  }>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -24,7 +28,7 @@ export const FullProduct = () => {
   }, []);
 
   if (!product) {
-    return "Загрузка...";
+    return <div>Загрузка...</div>;
   }
 
   return (
