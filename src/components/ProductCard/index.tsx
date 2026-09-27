@@ -3,7 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addItem, selectCartItemById } from "../../redux/slices/cartSlice";
 
-function ProductCard({ id, title, price, imageUrl, sizes }) {
+type ProductCardProps = {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+};
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  title,
+  price,
+  imageUrl,
+  sizes,
+}) => {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItemById(id));
 
@@ -11,9 +25,7 @@ function ProductCard({ id, title, price, imageUrl, sizes }) {
 
   const addedCount = cartItem ? cartItem.count : 0;
 
-  const onClickAdd = (event) => {
-    event.preventDefault();
-
+  const onClickAdd = () => {
     const item = {
       id,
       title,
@@ -67,6 +79,6 @@ function ProductCard({ id, title, price, imageUrl, sizes }) {
       </div>
     </div>
   );
-}
+};
 
 export default ProductCard;

@@ -16,7 +16,7 @@ import Sort from "../components/Sort";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
+
 import { fetchProducts, selectProductData } from "../redux/slices/productSlice";
 
 const Home = () => {
@@ -29,12 +29,12 @@ const Home = () => {
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
 
-  const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id));
+  const onChangeCategory = (index: number) => {
+    dispatch(setCategoryId(index));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   const getProducts = async () => {
@@ -44,6 +44,7 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}&` : "";
 
     dispatch(
+      // @ts-ignore
       fetchProducts({
         sortBy,
         order,
@@ -95,7 +96,7 @@ const Home = () => {
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const products = items.map((obj) => (
+  const products = items.map((obj: any) => (
     <Link key={obj.id} to={`/product/${obj.id}`}>
       <ProductCard {...obj} />
     </Link>
