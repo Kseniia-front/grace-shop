@@ -4,7 +4,7 @@ import { selectSort, setSort } from "../redux/slices/filterSlice";
 
 type SortItem = {
   name: string;
-  sortProperty: string;
+  sortProperty: "rating" | "-rating" | "price" | "-price" | "title" | "-title";
 };
 
 type PopupClick = MouseEvent & {
@@ -34,9 +34,7 @@ function Sort() {
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as PopupClick;
-
-      if (sortRef.current && !_event.path.includes(sortRef.current)) {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };

@@ -1,7 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addItem, selectCartItemById } from "../../redux/slices/cartSlice";
+import {
+  addItem,
+  CartItem,
+  selectCartItemById,
+} from "../../redux/slices/cartSlice";
 
 type ProductCardProps = {
   id: string;
@@ -26,12 +31,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       price,
       imageUrl,
       size: sizes[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };
@@ -39,8 +45,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="product-card-wrapper">
       <div className="product-card">
-        <img className="product-card__image" src={imageUrl} alt={title} />
-        <h4 className="product-card__title">{title}</h4>
+        <Link key={id} to={`/product/${id}`}>
+          <img className="product-card__image" src={imageUrl} alt={title} />
+          <h4 className="product-card__title">{title}</h4>
+        </Link>
         <div className="product-card__selector">
           <ul>
             {sizes.map((size, i) => (

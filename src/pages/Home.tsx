@@ -2,8 +2,8 @@ import React from "react";
 
 import qs from "qs";
 import { sortList } from "../components/Sort";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   selectFilter,
@@ -18,10 +18,11 @@ import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
 
 import { fetchProducts, selectProductData } from "../redux/slices/productSlice";
+import { useAppDispatch } from "../redux/store";
 
 const Home = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
@@ -44,13 +45,12 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}&` : "";
 
     dispatch(
-      // @ts-ignore
       fetchProducts({
         sortBy,
         order,
         category,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       }),
     );
 
@@ -78,12 +78,16 @@ const Home = () => {
         (obj) => obj.sortProperty === params.sortProperty,
       );
 
-      dispatch(
-        setFilters({
-          ...params,
-          sort,
-        }),
-      );
+      if (sort) {
+        dispatch(
+          setFilters({
+            sort,
+            categoryId: Number(params.categoryId),
+            currentPage: Number(params.currentPage),
+            searchValue: String(params.searchValue || ""),
+          }),
+        );
+      }
       isSearch.current = true;
     }
   }, []);
@@ -96,11 +100,7 @@ const Home = () => {
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const products = items.map((obj: any) => (
-    <Link key={obj.id} to={`/product/${obj.id}`}>
-      <ProductCard {...obj} />
-    </Link>
-  ));
+  const products = items.map((obj: any) => <ProductCard {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
@@ -112,7 +112,7 @@ const Home = () => {
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Все товары</h2>
       {status === "error" ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
