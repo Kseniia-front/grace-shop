@@ -5,19 +5,20 @@ import { sortList } from "../components/Sort";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { selectFilter } from "../redux/filter/selectors";
 import {
-  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
-} from "../redux/slices/filterSlice";
+} from "../redux/filter/slice";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import Pagination from "../components/Pagination";
 
-import { fetchProducts, selectProductData } from "../redux/slices/productSlice";
+import { fetchProducts } from "../redux/product/asyncActions";
+import { selectProductData } from "../redux/product/selectors";
 import { useAppDispatch } from "../redux/store";
 
 const Home = () => {
