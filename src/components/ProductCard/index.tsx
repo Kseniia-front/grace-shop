@@ -62,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
         <div className="product-card__bottom">
           <div className="product-card__price">{price} руб.</div>
-          <div
+          <button
             onClick={onClickAdd}
             className="button button--outline button--add"
           >
@@ -80,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </svg>
             <span>Добавить</span>
             {addedCount > 0 && <i>{addedCount}</i>}
-          </div>
+          </button>
         </div>
       </div>
     </div>

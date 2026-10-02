@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -40,6 +41,11 @@ export const FullProduct: React.FC = () => {
       />
       <h2>{product.title}</h2>
       <h4>{product.price} р.</h4>
+      <Link to="/">
+        <button className="button button--outline button--add">
+          <span>Назад</span>
+        </button>
+      </Link>
     </div>
   );
 };

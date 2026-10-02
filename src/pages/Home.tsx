@@ -11,11 +11,14 @@ import {
   setCurrentPage,
   setFilters,
 } from "../redux/filter/slice";
-import Categories from "../components/Categories";
-import Sort from "../components/Sort";
-import ProductCard from "../components/ProductCard";
-import Skeleton from "../components/ProductCard/Skeleton";
-import Pagination from "../components/Pagination";
+
+import {
+  Skeleton,
+  ProductCard,
+  Categories,
+  Pagination,
+  Sort,
+} from "../components";
 
 import { fetchProducts } from "../redux/product/asyncActions";
 import { selectProductData } from "../redux/product/selectors";
