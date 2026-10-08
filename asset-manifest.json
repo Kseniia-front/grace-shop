@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/grace-shop/static/css/main.7984e1e2.css",
+    "main.css": "/grace-shop/static/css/main.41f31ec0.css",
     "main.js": "/grace-shop/static/js/main.fa063980.js",
     "Cart.js": "/grace-shop/static/js/Cart.2fbb8fa0.chunk.js",
     "FullProduct.js": "/grace-shop/static/js/FullProduct.c55ec4a1.chunk.js",
@@ -8,14 +8,14 @@
     "static/media/puinte.png": "/grace-shop/static/media/puinte.ed7bfa381235a05092a2.png",
     "static/media/empty-cart.png": "/grace-shop/static/media/empty-cart.db905d1f4b063162f25b.png",
     "index.html": "/grace-shop/index.html",
-    "main.7984e1e2.css.map": "/grace-shop/static/css/main.7984e1e2.css.map",
+    "main.41f31ec0.css.map": "/grace-shop/static/css/main.41f31ec0.css.map",
     "main.fa063980.js.map": "/grace-shop/static/js/main.fa063980.js.map",
     "Cart.2fbb8fa0.chunk.js.map": "/grace-shop/static/js/Cart.2fbb8fa0.chunk.js.map",
     "FullProduct.c55ec4a1.chunk.js.map": "/grace-shop/static/js/FullProduct.c55ec4a1.chunk.js.map",
     "NotFound.44335061.chunk.js.map": "/grace-shop/static/js/NotFound.44335061.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7984e1e2.css",
+    "static/css/main.41f31ec0.css",
     "static/js/main.fa063980.js"
   ]
 }
